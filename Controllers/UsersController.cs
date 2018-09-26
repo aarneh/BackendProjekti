@@ -10,12 +10,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace BackendProjekti
 {
 
-    [Route("api/players")]
-    public class PlayerController : ControllerBase
+    [Route("api/users")]
+    public class UsersController : ControllerBase
     {
-        private readonly PlayersProcessor _processor;
+        private readonly UsersProcessor _processor;
 
-        public PlayerController(PlayersProcessor processor)
+        public UsersController(UsersProcessor processor)
         {
             _processor = processor;
         }
@@ -24,15 +24,14 @@ namespace BackendProjekti
         // GET api/<controller>/5
         [Route("{id}")]
         [HttpGet]
-        public Task<Player> Get(Guid id)
+        public Task<User> Get(Guid id)
         {
             return _processor.Get(id);
-            
         }
 
         // getaa api/<controller>
         [HttpGet]
-        public Task<Player[]> GetAll()
+        public Task<User[]> GetAll()
         {
             return _processor.GetAll();
         }
@@ -40,23 +39,22 @@ namespace BackendProjekti
         // PUT api/<controller>/5
         [Route("")]
         [HttpPost]
-        public Task<Player> Create([FromBody]NewPlayer player)
+        public Task<User> Create([FromBody]NewUser user)
         {
-           // Console.WriteLine(player.Name);
-            return _processor.Create(player);
+            return _processor.Create(user);
         }
         
         //JOTAIN
         [Route("{id}")]
         [HttpPut]
-        public Task<Player> Modify(Guid id,[FromBody]ModifiedPlayer player)
+        public Task<User> Modify(Guid id,[FromBody]ModifiedUser user)
         {
-            return _processor.Modify(id, player);
+            return _processor.Modify(id, user);
         }
         // DELETE api/<controller>/5'
         [Route("{id}")]
         [HttpDelete]
-        public Task<Player> Delete(Guid id)
+        public Task<User> Delete(Guid id)
         {
             return _processor.Delete(id);
         }
