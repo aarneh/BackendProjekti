@@ -40,8 +40,8 @@ namespace BackendProjekti
             return _repository.Get(id);
         }
 
-        public Task<User> GetPost(Guid postid) {
-            _repository.GetPost(postid);
+        public Task<User> GetPost(Guid id, Guid postid) {
+            _repository.GetPost(id, postid);
             return _repository.GetPosts(postid);
         }
         
@@ -55,14 +55,14 @@ namespace BackendProjekti
             return _repository.Post(id);
         }
 
-        public Task<User> EditPost(Guid postid, string editedPost) {
-            _repository.EditPost(postid, editedPost);
-            return _repository.EditPost(postid, editedPost);
+        public Task<User> EditPost(Guid id, Guid postid, string editedPost) {
+            _repository.EditPost(id, postid, editedPost);
+            return _repository.EditPost(id, postid, editedPost);
         }
 
-        public Task<User> DeletePost(Guid postid) {
-            _repository.DeletePost(postid);
-            return _repository.DeletePost(postid);
+        public Task<User> DeletePost(Guid id, Guid postid) {
+            _repository.DeletePost(id, postid);
+            return _repository.DeletePost(id, postid);
         }
     }
 }

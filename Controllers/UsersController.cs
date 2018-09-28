@@ -62,8 +62,8 @@ namespace BackendProjekti
 
         [Route("{id}/posts/{postid}")]
         [HttpGet]
-        public Task<User> GetPost(Guid postid) {
-            return _processor.GetPosts(postid);
+        public Task<User> GetPost(Guid id, Guid postid) {
+            return _processor.GetPosts(id, postid);
         }
 
         [Route("{id}/posts")]
@@ -80,13 +80,13 @@ namespace BackendProjekti
 
         [Route("{id}/posts/{postid}/edit")]
         [HttpPut]
-        public Task<User> EditPost(Guid postid, string editedPost) {
+        public Task<User> EditPost(Guid id, Guid postid, string editedPost) {
             return _processor.EditPost(postid, editedPost);
         }
 
         [Route("{id}/posts/{postid}/delete")]
         [HttpDelete]
-        public Task<User> DeletePost(Guid postid) {
+        public Task<User> DeletePost(Guid id, Guid postid) {
             return _processor.DeletePost(postid);
         }
     }
