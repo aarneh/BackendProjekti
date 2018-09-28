@@ -9,7 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BackendProjekti
 {
-
+    
+    [ApiController]
     [Route("api/users")]
     public class UsersController : ControllerBase
     {
@@ -37,7 +38,7 @@ namespace BackendProjekti
         }
 
         // PUT api/<controller>/5
-        [Route("")]
+        [Route("register")]
         [HttpPost]
         public Task<User> Create([FromBody]NewUser user)
         {
@@ -58,6 +59,35 @@ namespace BackendProjekti
         {
             return _processor.Delete(id);
         }
-        
+
+        [Route("{id}/posts/{postid}")]
+        [HttpGet]
+        public Task<User> GetPost(Guid postid) {
+            return _processor.GetPosts(postid);
+        }
+
+        [Route("{id}/posts")]
+        [HttpGet]
+        public Task<User> GetPosts(Guid id) {
+            return _processor.GetPosts(id);
+        }
+
+        [Route("post")]
+        [HttpPost]
+        public Task<User> Post(Guid id) {
+            return _processor.Post(id);
+        }
+
+        [Route("{id}/posts/{postid}/edit")]
+        [HttpPut]
+        public Task<User> EditPost(Guid postid, string editedPost) {
+            return _processor.EditPost(postid, editedPost);
+        }
+
+        [Route("{id}/posts/{postid}/delete")]
+        [HttpDelete]
+        public Task<User> DeletePost(Guid postid) {
+            return _processor.DeletePost(postid);
+        }
     }
 }

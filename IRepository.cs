@@ -13,7 +13,10 @@ namespace BackendProjekti
         Task<User> Modify(Guid id, ModifiedUser user);
         Task<User> Delete(Guid id);
         //Items 
-        
-
+        Task<User> GetPost(Guid postid);
+        Task<User> GetPosts(Guid id);
+        Task<User> Post(Guid id);
+        Task<User> EditPost(Guid postid, string editedPost);
+        Task<User> DeletePost(Guid postid);
     }
 }

@@ -26,7 +26,7 @@ namespace BackendProjekti
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddSingleton<IRepository>();
+            services.AddSingleton<IRepository,MongoDbRepository>();
             services.AddSingleton<UsersProcessor>();
         }
 
