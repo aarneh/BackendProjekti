@@ -25,13 +25,13 @@ namespace BackendProjekti
             tempuser.Name = user.Name;
             tempuser.Id = Guid.NewGuid();
             tempuser.IsBanned = false;
-            tempuser.CreationTime = DateTime.Now; 
+            tempuser.Posts = new List<Post>();
+            tempuser.CreationTime = DateTime.Now;
             
             
             return _repository.Create(tempuser);
         }
         public Task<User> Modify(Guid id, ModifiedUser user){
-            
             return _repository.Modify(id, user);
         }
 
@@ -40,27 +40,27 @@ namespace BackendProjekti
             return _repository.Get(id);
         }
 
-        public Task<User> GetPost(Guid id, Guid postid) {
+        public Task<Post> GetPost(Guid id, Guid postid) {
             _repository.GetPost(id, postid);
-            return _repository.GetPosts(postid);
+            return _repository.GetPost(id, postid);
         }
         
-        public Task<User> GetPosts(Guid id) {
+        public Task<Post[]> GetPosts(Guid id) {
             _repository.GetPosts(id);
             return _repository.GetPosts(id);
         }
         
-        public Task<User> Post(Guid id) {
-            _repository.Post(id);
-            return _repository.Post(id);
+        public Task<Post> Post(Guid id, NewPost newPost) {
+            _repository.Post(id, newPost);
+            return _repository.Post(id, newPost);
         }
 
-        public Task<User> EditPost(Guid id, Guid postid, string editedPost) {
+        public Task<Post> EditPost(Guid id, Guid postid, string editedPost) {
             _repository.EditPost(id, postid, editedPost);
             return _repository.EditPost(id, postid, editedPost);
         }
 
-        public Task<User> DeletePost(Guid id, Guid postid) {
+        public Task<Post> DeletePost(Guid id, Guid postid) {
             _repository.DeletePost(id, postid);
             return _repository.DeletePost(id, postid);
         }

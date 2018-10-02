@@ -12580,7 +12580,8 @@
     ".NETCoreApp,Version=v2.1": [
       "Microsoft.AspNetCore.App >= 2.1.1",
       "Microsoft.NETCore.App >= 2.1.0",
-      "MongoDB.driver >= 2.7.0"
+      "MongoDB.driver >= 2.7.0",
+      "Newtonsoft.json >= 11.0.2"
     ]
   },
   "packageFolders": {
@@ -12589,11 +12590,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Henri\\Documents\\BackendProjekti\\BackendProjekti.csproj",
+      "projectUniqueName": "C:\\Users\\Henri\\Documents\\BackendProjekti\\BackendProjekti.csproj",
       "projectName": "BackendProjekti",
-      "projectPath": "c:\\Users\\Henri\\Documents\\BackendProjekti\\BackendProjekti.csproj",
+      "projectPath": "C:\\Users\\Henri\\Documents\\BackendProjekti\\BackendProjekti.csproj",
       "packagesPath": "C:\\Users\\Henri\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Henri\\Documents\\BackendProjekti\\obj\\",
+      "outputPath": "C:\\Users\\Henri\\Documents\\BackendProjekti\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Henri\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -12634,6 +12635,10 @@
           "MongoDB.driver": {
             "target": "Package",
             "version": "[2.7.0, )"
+          },
+          "Newtonsoft.json": {
+            "target": "Package",
+            "version": "[11.0.2, )"
           }
         },
         "imports": [

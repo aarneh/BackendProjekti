@@ -2,6 +2,8 @@ using System;
 using System.Threading.Tasks;
 using MongoDB.Driver;
 using MongoDB.Bson;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 //using game_server.Players;
 
@@ -15,7 +17,7 @@ namespace BackendProjekti
         public MongoDbRepository()
         {
             var mongoClient = new MongoClient("mongodb://localhost:27017");
-            IMongoDatabase database = mongoClient.GetDatabase("Users");
+            IMongoDatabase database = mongoClient.GetDatabase("userDatabase");
             _collection = database.GetCollection<User>("users");
             _bsonDocumentCollection = database.GetCollection<BsonDocument>("users");
         }
@@ -35,6 +37,15 @@ namespace BackendProjekti
         public Task<User> Get(Guid id)
         {
             FilterDefinition<User> filter = Builders<User>.Filter.Eq("_id", id);
+            /*var data = _collection.Find(filter).FirstAsync().Result;
+            string d = JsonConvert.SerializeObject(data);
+
+            List<string> posts = new List<string>();
+            foreach (string post in data.Posts) {
+                posts.Add(post);
+            }*/
+            
+            
             return _collection.Find(filter).FirstAsync();
         }
 
@@ -42,6 +53,7 @@ namespace BackendProjekti
         {
             FilterDefinition<User> filter = Builders<User>.Filter.Eq("_id", id);
             User user = await _collection.Find(filter).FirstAsync();
+            user.Description = modifiedUser.Description;
             await _collection.ReplaceOneAsync(filter, user);
             return user;
         }
@@ -51,6 +63,61 @@ namespace BackendProjekti
             var filter = Builders<User>.Filter.Eq("_id", UserId);
             User user = await _collection.FindOneAndDeleteAsync(filter);
             return user;
+        }
+
+        public async Task<Post> GetPost(Guid id, Guid postid) {
+            FilterDefinition<User> filter = Builders<User>.Filter.Eq("_id", id);
+            User user = await _collection.Find(filter).FirstAsync();
+            for (int i = 0; i < user.Posts.Count; i++) {
+                if (user.Posts[i].postid == postid) {
+                    return user.Posts[i];
+                }
+            }
+            return null;
+        }
+
+        public async Task<Post[]> GetPosts(Guid id) {
+            FilterDefinition<User> filter = Builders<User>.Filter.Eq("_id", id);
+            User user = await _collection.Find(filter).FirstAsync();
+            return user.Posts.ToArray();
+        }
+        
+        public async Task<Post> Post(Guid id, NewPost newPost) {
+            FilterDefinition<User> filter = Builders<User>.Filter.Eq("_id", id);
+            User user = await _collection.Find(filter).FirstAsync();
+            Post post = new Post();
+            post.postString = newPost.postString;
+            post.date = DateTime.Now;
+            post.postid = Guid.NewGuid();
+            user.Posts.Add(post);
+            await _collection.ReplaceOneAsync(filter, user);
+            return post;
+        }
+
+        public async Task<Post> EditPost(Guid id, Guid postid, string editedPost) {
+            FilterDefinition<User> filter = Builders<User>.Filter.Eq("_id", id);
+            User user = await _collection.Find(filter).FirstAsync();
+            for (int i = 0; i < user.Posts.Count; i++) {
+                if (user.Posts[i].postid == postid) {
+                    user.Posts[i].postString = editedPost;
+                    await _collection.ReplaceOneAsync(filter, user);
+                    return user.Posts[i];
+                }
+            }
+            return null;
+        }
+        
+        public async Task<Post> DeletePost(Guid id, Guid postid) {
+            FilterDefinition<User> filter = Builders<User>.Filter.Eq("_id", id);
+            User user = await _collection.Find(filter).FirstAsync();
+            for (int i = 0; i < user.Posts.Count; i++) {
+                if (user.Posts[i].postid == postid) {
+                    user.Posts.Remove(user.Posts[i]);
+                    await _collection.ReplaceOneAsync(filter, user);
+                    return user.Posts[i];
+                }
+            }
+            return null;
         }
     }
 }

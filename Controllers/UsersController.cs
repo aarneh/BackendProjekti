@@ -38,9 +38,9 @@ namespace BackendProjekti
         }
 
         // PUT api/<controller>/5
-        [Route("register")]
+        //[Route("register")]
         [HttpPost]
-        public Task<User> Create([FromBody]NewUser user)
+        public Task<User> Create(NewUser user)
         {
             return _processor.Create(user);
         }
@@ -62,32 +62,32 @@ namespace BackendProjekti
 
         [Route("{id}/posts/{postid}")]
         [HttpGet]
-        public Task<User> GetPost(Guid id, Guid postid) {
-            return _processor.GetPosts(id, postid);
+        public Task<Post> GetPost(Guid id, Guid postid) {
+            return _processor.GetPost(id, postid);
         }
 
         [Route("{id}/posts")]
         [HttpGet]
-        public Task<User> GetPosts(Guid id) {
+        public Task<Post[]> GetPosts(Guid id) {
             return _processor.GetPosts(id);
         }
 
-        [Route("post")]
+        [Route("{id}/post")]
         [HttpPost]
-        public Task<User> Post(Guid id) {
-            return _processor.Post(id);
+        public Task<Post> Post(Guid id, NewPost newPost) {
+            return _processor.Post(id, newPost);
         }
 
         [Route("{id}/posts/{postid}/edit")]
         [HttpPut]
-        public Task<User> EditPost(Guid id, Guid postid, string editedPost) {
-            return _processor.EditPost(postid, editedPost);
+        public Task<Post> EditPost(Guid id, Guid postid, string editedPost) {
+            return _processor.EditPost(id, postid, editedPost);
         }
 
         [Route("{id}/posts/{postid}/delete")]
         [HttpDelete]
-        public Task<User> DeletePost(Guid id, Guid postid) {
-            return _processor.DeletePost(postid);
+        public Task<Post> DeletePost(Guid id, Guid postid) {
+            return _processor.DeletePost(id, postid);
         }
     }
 }

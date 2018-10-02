@@ -26,7 +26,8 @@
         "dependencies": {
           "Microsoft.AspNetCore.App": "2.1.1",
           "Microsoft.NETCore.App": "2.1.0",
-          "MongoDB.Driver": "2.7.0"
+          "MongoDB.Driver": "2.7.0",
+          "Newtonsoft.Json": "11.0.2"
         },
         "runtime": {
           "BackendProjekti.dll": {}
