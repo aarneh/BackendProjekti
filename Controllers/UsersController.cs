@@ -43,17 +43,25 @@ namespace BackendProjekti
         {
             if(_processor.CheckIfAdmin(adminkey).Result){
                 return _processor.Create(user);
+            }else if (adminkey == null){
+                throw new NoKeyException("No admin key!");
             }else{
-                return null;
+                throw new NotAdminException("You are not admin!");
             }
         }
         
         
         [Route("{id}")]
         [HttpPut]
-        public Task<User> Modify(Guid id,[FromBody]ModifiedUser user)
+        public Task<User> Modify(Guid id,[FromBody]ModifiedUser user,[FromBody]string adminkey)
         {
+            if(_processor.CheckIfAdmin(adminkey).Result){
             return _processor.Modify(id, user);
+            }else if (adminkey == null){
+                throw new NoKeyException("No admin key!");
+            }else{
+                throw new NotAdminException("You are not admin!");
+            }
         }
         
         [Route("{id}")]
@@ -65,8 +73,14 @@ namespace BackendProjekti
 
         [Route("{id}/posts/{postid}")]
         [HttpGet]
-        public Task<Post> GetPost(Guid id, Guid postid) {
+        public Task<Post> GetPost(Guid id, Guid postid,[FromBody]string adminkey) {
+            if(_processor.CheckIfAdmin(adminkey).Result){
             return _processor.GetPost(id, postid);
+            }else if (adminkey == null){
+                throw new NoKeyException("No admin key!");
+            }else{
+                throw new NotAdminException("You are not admin!");
+            }
         }
 
         [Route("{id}/posts")]
@@ -130,16 +144,28 @@ namespace BackendProjekti
 
         [Route("banuser/{id}")]
         [HttpPut]
-        public Task<User> BanUser(Guid id)
+        public Task<User> BanUser(Guid id,[FromBody]string adminkey)
         {
+            if(_processor.CheckIfAdmin(adminkey).Result){
             return _processor.BanUser(id);
+            }else if (adminkey == null){
+                throw new NoKeyException("No admin key!");
+            }else{
+                throw new NotAdminException("You are not admin!");
+            }
         }
 
         [Route("unbanuser/{id}")]
         [HttpPut]
-        public Task<User> UnBanUser(Guid id)
+        public Task<User> UnBanUser(Guid id,[FromBody]string adminkey)
         {
+            if(_processor.CheckIfAdmin(adminkey).Result){
             return _processor.UnBanUser(id);
+            }else if (adminkey == null){
+                throw new NoKeyException("No admin key!");
+            }else{
+                throw new NotAdminException("You are not admin!");
+            }
         }
 
         [Route("{id}/posts/{postid}/favorite")]

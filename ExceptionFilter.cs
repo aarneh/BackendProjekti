@@ -12,9 +12,13 @@
 
         public override void OnException(ExceptionContext context)
         {   
-            if (context.Exception is LevelRequirementException){
-               // context.Result = new BadRequestResult();
-			    context.Result = new BadRequestObjectResult("Too low level!");
+            if (context.Exception is NotAdminException){
+               
+			    context.Result = new ForbidResult("You are not admin!");
+            }
+
+            if(context.Exception is NoKeyException){
+                context.Result = new BadRequestObjectResult("No admin key!");
             }
             
         }

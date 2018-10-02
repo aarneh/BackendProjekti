@@ -2,19 +2,19 @@ using System;
 
 namespace BackendProjekti
 {
-    public class LevelRequirementException : Exception
+    public class NotAdminException : Exception
     {
-        public LevelRequirementException(): base()
+        public NotAdminException(): base()
         {
 
         }
 
-        public LevelRequirementException(string message) : base(message)
+        public NotAdminException(string message) : base(message)
         {
 
         }
 
-        public LevelRequirementException(string message, Exception inner) : base(message, inner)
+        public NotAdminException(string message, Exception inner) : base(message, inner)
         {
 
         }
