@@ -119,5 +119,57 @@ namespace BackendProjekti
             }
             return null;
         }
+
+        public async Task<int> GetActivity(Guid id)
+        {
+            FilterDefinition<User> filter = Builders<User>.Filter.Eq("_id", id);
+            User user = await _collection.Find(filter).FirstAsync();
+            return user.Activity;
+        }
+
+        public async Task<User[]> GetUsersWithActivityMoreThan(int minactivity)
+        {
+            FilterDefinition<User> filter = Builders<User>.Filter.Gt("Activity", minactivity);
+            List<User> users = await _collection.Find(filter).ToListAsync();
+            return users.ToArray();
+           
+        }
+
+        public async Task<User> GetMostActiveUser()
+        {
+            SortDefinition<User> sort = Builders<User>.Sort.Descending(p => p.Activity);
+            User user = await _collection.Find(new BsonDocument()).Sort(sort).FirstAsync();
+            return user;
+        }
+
+        public async Task<User> GetLeastActiveUser()
+        {
+            SortDefinition<User> sort = Builders<User>.Sort.Ascending(p => p.Activity);
+            User user = await _collection.Find(new BsonDocument()).Sort(sort).FirstAsync();
+            return user;
+        }
+
+        public async Task<int> GetAmountOfPosts(Guid id)
+        {
+            FilterDefinition<User> filter = Builders<User>.Filter.Eq("_id", id);
+            User user = await _collection.Find(filter).FirstAsync();
+            return user.Posts.Count;
+        }
+
+        public async Task<User> BanUser(Guid id)
+        {
+            FilterDefinition<User> filter = Builders<User>.Filter.Eq("id", id);
+            var banuser = Builders<User>.Update.Set("IsBanned", true);
+            User user = await _collection.FindOneAndUpdateAsync(filter, banuser);
+            return user;
+        }
+
+        public async Task<User> UnBanUser(Guid id)
+        {
+            FilterDefinition<User> filter = Builders<User>.Filter.Eq("id", id);
+            var unbanuser = Builders<User>.Update.Set("IsBanned", false);
+            User user = await _collection.FindOneAndUpdateAsync(filter, unbanuser);
+            return user;
+        }
     }
 }

@@ -18,5 +18,16 @@ namespace BackendProjekti
         Task<Post> Post(Guid id, NewPost newPost);
         Task<Post> EditPost(Guid id, Guid postid, string editedPost);
         Task<Post> DeletePost(Guid id, Guid postid);
+        Task<int> GetActivity(Guid id);
+        Task<User[]> GetUsersWithActivityMoreThan(int minactivity);
+        Task<User> GetMostActiveUser();
+        Task<User> GetLeastActiveUser();
+        Task<int> GetAmountOfPosts(Guid id);
+        Task<User> BanUser(Guid id);
+        Task<User> UnBanUser(Guid id);
+        
+        
+        
+        
     }
 }

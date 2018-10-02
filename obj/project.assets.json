@@ -12585,19 +12585,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Henri\\.nuget\\packages\\": {}
+    "C:\\Users\\Aarne\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Henri\\Documents\\BackendProjekti\\BackendProjekti.csproj",
+      "projectUniqueName": "c:\\Users\\Aarne\\Desktop\\Backendteht5\\Backendprojekti\\BackendProjekti\\BackendProjekti.csproj",
       "projectName": "BackendProjekti",
-      "projectPath": "C:\\Users\\Henri\\Documents\\BackendProjekti\\BackendProjekti.csproj",
-      "packagesPath": "C:\\Users\\Henri\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Henri\\Documents\\BackendProjekti\\obj\\",
+      "projectPath": "c:\\Users\\Aarne\\Desktop\\Backendteht5\\Backendprojekti\\BackendProjekti\\BackendProjekti.csproj",
+      "packagesPath": "C:\\Users\\Aarne\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\Aarne\\Desktop\\Backendteht5\\Backendprojekti\\BackendProjekti\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Henri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Aarne\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

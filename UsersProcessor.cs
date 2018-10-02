@@ -27,6 +27,7 @@ namespace BackendProjekti
             tempuser.IsBanned = false;
             tempuser.Posts = new List<Post>();
             tempuser.CreationTime = DateTime.Now;
+            tempuser.Activity = 0;
             
             
             return _repository.Create(tempuser);
@@ -36,33 +37,62 @@ namespace BackendProjekti
         }
 
         public Task<User> Delete(Guid id){
-            _repository.Delete(id);
             return _repository.Get(id);
         }
 
         public Task<Post> GetPost(Guid id, Guid postid) {
-            _repository.GetPost(id, postid);
             return _repository.GetPost(id, postid);
         }
         
         public Task<Post[]> GetPosts(Guid id) {
-            _repository.GetPosts(id);
             return _repository.GetPosts(id);
         }
         
         public Task<Post> Post(Guid id, NewPost newPost) {
-            _repository.Post(id, newPost);
             return _repository.Post(id, newPost);
         }
 
         public Task<Post> EditPost(Guid id, Guid postid, string editedPost) {
-            _repository.EditPost(id, postid, editedPost);
             return _repository.EditPost(id, postid, editedPost);
         }
 
         public Task<Post> DeletePost(Guid id, Guid postid) {
-            _repository.DeletePost(id, postid);
-            return _repository.DeletePost(id, postid);
+             return _repository.DeletePost(id, postid);
+        }
+
+        public Task<int> GetActivity(Guid id)
+        {
+            return _repository.GetActivity(id);
+        }
+
+        public Task<User[]> GetUsersWithActivityMoreThan(int minactivity)
+        {
+            return _repository.GetUsersWithActivityMoreThan(minactivity);
+        }
+
+        public Task<User> GetMostActiveUser()
+        {
+            return _repository.GetMostActiveUser();
+        }
+
+        public Task<User> GetLeastActiveUser()
+        {
+            return _repository.GetLeastActiveUser();
+        }
+
+        public Task<int> GetAmountOfPosts(Guid id)
+        {
+            return _repository.GetAmountOfPosts(id);
+        }
+
+        public Task<User> BanUser(Guid id)
+        {
+            return _repository.BanUser(id);
+        }
+
+        public Task<User> UnBanUser(Guid id)
+        {
+            return _repository.UnBanUser(id);
         }
     }
 }

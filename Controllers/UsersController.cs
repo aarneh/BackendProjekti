@@ -89,5 +89,54 @@ namespace BackendProjekti
         public Task<Post> DeletePost(Guid id, Guid postid) {
             return _processor.DeletePost(id, postid);
         }
+
+        [Route("activity/{id]")]
+        [HttpGet]
+        public Task<int> GetActivity(Guid id)
+        {
+            return _processor.GetActivity(id);
+        }
+
+        [Route("activity/{minactivity}")]
+        [HttpGet]
+        public Task<User[]> GetUsersWithActivityMoreThan(int minactivity)
+        {
+            return _processor.GetUsersWithActivityMoreThan(minactivity);
+        }
+
+        [Route("mostactivity")]
+        [HttpGet]
+        public Task<User> GetMostActiveUser()
+        {
+            return _processor.GetMostActiveUser();
+        }
+
+        [Route("leastactivity")]
+        [HttpGet]
+        public Task<User> GetLeastActiveUser()
+        {
+            return _processor.GetLeastActiveUser();
+        }
+
+        [Route("amountofposts/{id}")]
+        [HttpGet]
+        public Task<int> GetAmountOfPosts(Guid id)
+        {
+            return _processor.GetAmountOfPosts(id);
+        }
+
+        [Route("banuser/{id}")]
+        [HttpPut]
+        public Task<User> BanUser(Guid id)
+        {
+            return _processor.BanUser(id);
+        }
+
+        [Route("unbanuser/{id}")]
+        [HttpPut]
+        public Task<User> UnBanUser(Guid id)
+        {
+            return _processor.UnBanUser(id);
+        }
     }
 }
