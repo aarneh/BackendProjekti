@@ -25,6 +25,9 @@ namespace BackendProjekti
         Task<int> GetAmountOfPosts(Guid id);
         Task<User> BanUser(Guid id);
         Task<User> UnBanUser(Guid id);
+        Task<Post> FavoritePost(Guid postid,Guid Favoriterid, Guid id);
+        Task<Comment> CommentPost(Guid id,Guid postid, Comment comment);
+        Task<Boolean> CheckIfAdmin(string adminkey);
         
         
         

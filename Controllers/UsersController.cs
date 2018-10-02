@@ -22,7 +22,7 @@ namespace BackendProjekti
         }
        
 
-        // GET api/<controller>/5
+        
         [Route("{id}")]
         [HttpGet]
         public Task<User> Get(Guid id)
@@ -30,29 +30,32 @@ namespace BackendProjekti
             return _processor.Get(id);
         }
 
-        // getaa api/<controller>
+        
         [HttpGet]
         public Task<User[]> GetAll()
         {
             return _processor.GetAll();
         }
 
-        // PUT api/<controller>/5
-        //[Route("register")]
+        
         [HttpPost]
-        public Task<User> Create(NewUser user)
+        public Task<User> Create(NewUser user, [FromBody]string adminkey)
         {
-            return _processor.Create(user);
+            if(_processor.CheckIfAdmin(adminkey).Result){
+                return _processor.Create(user);
+            }else{
+                return null;
+            }
         }
         
-        //JOTAIN
+        
         [Route("{id}")]
         [HttpPut]
         public Task<User> Modify(Guid id,[FromBody]ModifiedUser user)
         {
             return _processor.Modify(id, user);
         }
-        // DELETE api/<controller>/5'
+        
         [Route("{id}")]
         [HttpDelete]
         public Task<User> Delete(Guid id)
@@ -90,7 +93,7 @@ namespace BackendProjekti
             return _processor.DeletePost(id, postid);
         }
 
-        [Route("activity/{id]")]
+        [Route("activity/{id}")]
         [HttpGet]
         public Task<int> GetActivity(Guid id)
         {
@@ -137,6 +140,20 @@ namespace BackendProjekti
         public Task<User> UnBanUser(Guid id)
         {
             return _processor.UnBanUser(id);
+        }
+
+        [Route("{id}/posts/{postid}/favorite")]
+        [HttpPut]
+        public Task<Post> FavoritePost(Guid postid,[FromBody] Guid Favoriterid, Guid id)
+        {
+            return _processor.FavoritePost(postid,Favoriterid, id);
+        }
+
+        [Route("{id}/posts/{postid}/comments")]
+        [HttpPut]
+        public Task<Comment> CommentPost(Guid id,Guid postid, [FromBody]NewComment newcomment)
+        {
+            return _processor.CommentPost(id, postid, newcomment);
         }
     }
 }

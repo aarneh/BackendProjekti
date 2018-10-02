@@ -94,5 +94,26 @@ namespace BackendProjekti
         {
             return _repository.UnBanUser(id);
         }
+
+        public Task<Post> FavoritePost(Guid postid, Guid Favoriterid, Guid id)
+        {
+            return _repository.FavoritePost(postid,Favoriterid,id);
+        }
+
+        public Task<Comment> CommentPost(Guid id,Guid postid, NewComment newcomment)
+        {
+            Comment tempcomment = new Comment();
+
+            tempcomment.CommenterId = newcomment.CommenterId;
+            tempcomment.CommentId = Guid.NewGuid();
+            tempcomment.CommentText = newcomment.CommentText;
+
+            return _repository.CommentPost(id, postid, tempcomment);
+        }
+
+        public Task<Boolean> CheckIfAdmin(string adminkey)
+        {
+            return _repository.CheckIfAdmin(adminkey);
+        }
     }
 }

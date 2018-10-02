@@ -12,14 +12,18 @@ namespace BackendProjekti
     public class MongoDbRepository : IRepository
     {
         private readonly IMongoCollection<User> _collection;
+        private readonly IMongoCollection<string> _adminkey;
         private readonly IMongoCollection<BsonDocument> _bsonDocumentCollection;
+        private readonly IMongoCollection<BsonDocument> _bsonDocumentAuthenticationkey;
 
         public MongoDbRepository()
         {
             var mongoClient = new MongoClient("mongodb://localhost:27017");
             IMongoDatabase database = mongoClient.GetDatabase("userDatabase");
             _collection = database.GetCollection<User>("users");
+            _adminkey = database.GetCollection<string>("authenticationkey");
             _bsonDocumentCollection = database.GetCollection<BsonDocument>("users");
+            _bsonDocumentAuthenticationkey = database.GetCollection<BsonDocument>("authenticationkey");
         }
 
         public async Task<User> Create(User user)
@@ -170,6 +174,46 @@ namespace BackendProjekti
             var unbanuser = Builders<User>.Update.Set("IsBanned", false);
             User user = await _collection.FindOneAndUpdateAsync(filter, unbanuser);
             return user;
+        }
+
+        public async Task<Post> FavoritePost(Guid postid, Guid Favoriterid, Guid id)
+        {
+            FilterDefinition<User> filter = Builders<User>.Filter.Eq("id", id);
+            User user = await _collection.Find(filter).FirstAsync();
+
+            for (int i = 0; i < user.Posts.Count; i++) {
+                if (user.Posts[i].postid == postid) {
+                    user.Posts[i].Favorites.Add(Favoriterid);
+                    await _collection.ReplaceOneAsync(filter, user);
+                    return user.Posts[i];
+                }
+            }
+            return null;
+            
+        }
+
+        public async Task<Comment> CommentPost(Guid id,Guid postid, Comment comment)
+        {
+            FilterDefinition<User> filter = Builders<User>.Filter.Eq("id", id);
+            User user = await _collection.Find(filter).FirstAsync();
+            for (int i = 0; i < user.Posts.Count; i++) {
+                if (user.Posts[i].postid == postid) {
+                    user.Posts[i].Comments.Add(comment);
+                    await _collection.ReplaceOneAsync(filter, user);
+                    return comment;
+                }
+            }
+            return null;
+        }
+
+        public Task<Boolean> CheckIfAdmin(string adminkey)
+        {
+            if(adminkey == _adminkey.ToString())
+            {
+                return Task.FromResult(true);
+            }else{
+                return Task.FromResult(false);
+            }
         }
     }
 }

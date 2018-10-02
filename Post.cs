@@ -9,6 +9,8 @@ namespace BackendProjekti
         public Guid postid { get; set; }
         public DateTime date { get; set; }
         public string postString { get; set; }
+        public List<Guid> Favorites{get; set;}
+        public List<Comment> Comments{get; set;}
     }
 
     public class NewPost

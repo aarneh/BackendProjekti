@@ -12,3 +12,17 @@ C:\Users\Henri\Documents\BackendProjekti\obj\Debug\netcoreapp2.1\BackendProjekti
 C:\Users\Henri\Documents\BackendProjekti\obj\Debug\netcoreapp2.1\BackendProjekti.RazorTargetAssemblyInfo.cache
 C:\Users\Henri\Documents\BackendProjekti\obj\Debug\netcoreapp2.1\BackendProjekti.dll
 C:\Users\Henri\Documents\BackendProjekti\obj\Debug\netcoreapp2.1\BackendProjekti.pdb
+C:\Users\Aarne\Desktop\Backendteht5\Backendprojekti\BackendProjekti\bin\Debug\netcoreapp2.1\BackendProjekti.deps.json
+C:\Users\Aarne\Desktop\Backendteht5\Backendprojekti\BackendProjekti\bin\Debug\netcoreapp2.1\BackendProjekti.runtimeconfig.json
+C:\Users\Aarne\Desktop\Backendteht5\Backendprojekti\BackendProjekti\bin\Debug\netcoreapp2.1\BackendProjekti.runtimeconfig.dev.json
+C:\Users\Aarne\Desktop\Backendteht5\Backendprojekti\BackendProjekti\bin\Debug\netcoreapp2.1\BackendProjekti.dll
+C:\Users\Aarne\Desktop\Backendteht5\Backendprojekti\BackendProjekti\bin\Debug\netcoreapp2.1\BackendProjekti.pdb
+C:\Users\Aarne\Desktop\Backendteht5\Backendprojekti\BackendProjekti\obj\Debug\netcoreapp2.1\BackendProjekti.csprojAssemblyReference.cache
+C:\Users\Aarne\Desktop\Backendteht5\Backendprojekti\BackendProjekti\obj\Debug\netcoreapp2.1\BackendProjekti.csproj.CoreCompileInputs.cache
+C:\Users\Aarne\Desktop\Backendteht5\Backendprojekti\BackendProjekti\obj\Debug\netcoreapp2.1\BackendProjekti.RazorAssemblyInfo.cache
+C:\Users\Aarne\Desktop\Backendteht5\Backendprojekti\BackendProjekti\obj\Debug\netcoreapp2.1\BackendProjekti.RazorAssemblyInfo.cs
+C:\Users\Aarne\Desktop\Backendteht5\Backendprojekti\BackendProjekti\obj\Debug\netcoreapp2.1\BackendProjekti.AssemblyInfoInputs.cache
+C:\Users\Aarne\Desktop\Backendteht5\Backendprojekti\BackendProjekti\obj\Debug\netcoreapp2.1\BackendProjekti.AssemblyInfo.cs
+C:\Users\Aarne\Desktop\Backendteht5\Backendprojekti\BackendProjekti\obj\Debug\netcoreapp2.1\BackendProjekti.RazorTargetAssemblyInfo.cache
+C:\Users\Aarne\Desktop\Backendteht5\Backendprojekti\BackendProjekti\obj\Debug\netcoreapp2.1\BackendProjekti.dll
+C:\Users\Aarne\Desktop\Backendteht5\Backendprojekti\BackendProjekti\obj\Debug\netcoreapp2.1\BackendProjekti.pdb
