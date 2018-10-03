@@ -39,26 +39,33 @@ namespace BackendProjekti
 
         
         [HttpPost]
-        public Task<User> Create(NewUser user, [FromBody]string adminkey)
+        public Task<User> Create(NewUser user)
         {
-            if(_processor.CheckIfAdmin(adminkey).Result){
-                return _processor.Create(user);
-            }else if (adminkey == null){
-                throw new NoKeyException("No admin key!");
-            }else{
-                throw new NotAdminException("You are not admin!");
-            }
+            return _processor.Create(user);
         }
+
+        [Route("createsession")]
+        [HttpPost]
+        public Task<User> CreateSession()
+        {
+            return _processor.CreateSession();
+        }
+
+        [Route("deletesession/{sessionid}")]
+        [HttpDelete]
+        public Task<User> DeleteSession(Guid sessionid)
+        {
+            return _processor.DeleteSession(sessionid);
+        }
+
         
         
-        [Route("{id}")]
+        [Route("{id}/{adminkey}")]
         [HttpPut]
-        public Task<User> Modify(Guid id,[FromBody]ModifiedUser user,[FromBody]string adminkey)
+        public Task<User> Modify(Guid id,[FromBody]ModifiedUser user,string adminkey)
         {
             if(_processor.CheckIfAdmin(adminkey).Result){
             return _processor.Modify(id, user);
-            }else if (adminkey == null){
-                throw new NoKeyException("No admin key!");
             }else{
                 throw new NotAdminException("You are not admin!");
             }
@@ -66,21 +73,21 @@ namespace BackendProjekti
         
         [Route("{id}")]
         [HttpDelete]
-        public Task<User> Delete(Guid id)
+        public Task<User> Delete(Guid id,[FromBody]string adminkey)
         {
+            if(_processor.CheckIfAdmin(adminkey).Result){
             return _processor.Delete(id);
+            }else{
+                throw new NotAdminException("You are not admin!");
+            }
         }
 
         [Route("{id}/posts/{postid}")]
         [HttpGet]
-        public Task<Post> GetPost(Guid id, Guid postid,[FromBody]string adminkey) {
-            if(_processor.CheckIfAdmin(adminkey).Result){
+        public Task<Post> GetPost(Guid id, Guid postid) {
+            
             return _processor.GetPost(id, postid);
-            }else if (adminkey == null){
-                throw new NoKeyException("No admin key!");
-            }else{
-                throw new NotAdminException("You are not admin!");
-            }
+           
         }
 
         [Route("{id}/posts")]
@@ -148,8 +155,6 @@ namespace BackendProjekti
         {
             if(_processor.CheckIfAdmin(adminkey).Result){
             return _processor.BanUser(id);
-            }else if (adminkey == null){
-                throw new NoKeyException("No admin key!");
             }else{
                 throw new NotAdminException("You are not admin!");
             }
@@ -161,8 +166,6 @@ namespace BackendProjekti
         {
             if(_processor.CheckIfAdmin(adminkey).Result){
             return _processor.UnBanUser(id);
-            }else if (adminkey == null){
-                throw new NoKeyException("No admin key!");
             }else{
                 throw new NotAdminException("You are not admin!");
             }

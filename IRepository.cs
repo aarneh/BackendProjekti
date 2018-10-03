@@ -10,6 +10,8 @@ namespace BackendProjekti
         Task<User> Get(Guid id);
         Task<User[]> GetAll();
         Task<User> Create(User user);
+        Task<User> CreateSession();
+        Task<User> DeleteSession(Guid sessionid);
         Task<User> Modify(Guid id, ModifiedUser user);
         Task<User> Delete(Guid id);
         //Items 

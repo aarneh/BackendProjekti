@@ -32,12 +32,22 @@ namespace BackendProjekti
             
             return _repository.Create(tempuser);
         }
+
+        public Task<User> CreateSession()
+        {
+            return _repository.CreateSession();
+        }
+
+        public Task<User> DeleteSession(Guid sessionid)
+        {
+            return _repository.DeleteSession(sessionid);
+        }
         public Task<User> Modify(Guid id, ModifiedUser user){
             return _repository.Modify(id, user);
         }
 
         public Task<User> Delete(Guid id){
-            return _repository.Get(id);
+            return _repository.Delete(id);
         }
 
         public Task<Post> GetPost(Guid id, Guid postid) {

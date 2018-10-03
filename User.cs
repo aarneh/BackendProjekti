@@ -10,6 +10,7 @@ namespace BackendProjekti
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public string Password{get;set;}
         public bool Admin { get; set; }
         public bool IsBanned { get; set; }
         public List<Post> Posts { get; set; }
@@ -23,6 +24,7 @@ namespace BackendProjekti
      public class NewUser
     {
         public string Name { get; set; }
+        public string Password{get;set;}
     }
 
     public class ModifiedUser

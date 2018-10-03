@@ -13,8 +13,10 @@ namespace BackendProjekti
     {
         private readonly IMongoCollection<User> _collection;
         private readonly IMongoCollection<string> _adminkey;
+        private readonly IMongoCollection<Guid> _sessionkey;
         private readonly IMongoCollection<BsonDocument> _bsonDocumentCollection;
         private readonly IMongoCollection<BsonDocument> _bsonDocumentAuthenticationkey;
+        private readonly IMongoCollection<BsonDocument> _bsonDocumentSessionkey;
 
         public MongoDbRepository()
         {
@@ -22,14 +24,25 @@ namespace BackendProjekti
             IMongoDatabase database = mongoClient.GetDatabase("userDatabase");
             _collection = database.GetCollection<User>("users");
             _adminkey = database.GetCollection<string>("authenticationkey");
+            _sessionkey = database.GetCollection<Guid>("sessionkey");
             _bsonDocumentCollection = database.GetCollection<BsonDocument>("users");
             _bsonDocumentAuthenticationkey = database.GetCollection<BsonDocument>("authenticationkey");
+            _bsonDocumentSessionkey = database.GetCollection<BsonDocument>("sessionkey");
         }
 
         public async Task<User> Create(User user)
         {
             await _collection.InsertOneAsync(user);
             return user;
+        }
+        public Task<User> CreateSession()
+        {
+            
+        }
+
+        public Task<User> DeleteSession(Guid sessionid)
+        {
+            
         }
 
         public async Task<User[]> GetAll()
