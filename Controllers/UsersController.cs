@@ -44,19 +44,7 @@ namespace BackendProjekti
             return _processor.Create(user);
         }
 
-        [Route("createsession")]
-        [HttpPost]
-        public Task<User> CreateSession()
-        {
-            return _processor.CreateSession();
-        }
-
-        [Route("deletesession/{sessionid}")]
-        [HttpDelete]
-        public Task<User> DeleteSession(Guid sessionid)
-        {
-            return _processor.DeleteSession(sessionid);
-        }
+        
 
         
         

@@ -35,15 +35,6 @@ namespace BackendProjekti
             await _collection.InsertOneAsync(user);
             return user;
         }
-        public Task<User> CreateSession()
-        {
-            
-        }
-
-        public Task<User> DeleteSession(Guid sessionid)
-        {
-            
-        }
 
         public async Task<User[]> GetAll()
         {
