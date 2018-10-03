@@ -107,6 +107,7 @@ namespace BackendProjekti
             post.date = DateTime.Now;
             post.postid = Guid.NewGuid();
             user.Posts.Add(post);
+            user.Activity = user.Activity + 5;
             await _collection.ReplaceOneAsync(filter, user);
             return post;
         }
@@ -212,6 +213,7 @@ namespace BackendProjekti
             for (int i = 0; i < user.Posts.Count; i++) {
                 if (user.Posts[i].postid == postid) {
                     user.Posts[i].Comments.Add(comment);
+                    user.Activity = user.Activity + 1;
                     await _collection.ReplaceOneAsync(filter, user);
                     return comment;
                 }
